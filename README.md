@@ -1,6 +1,6 @@
 # Acorn Electron Castle Wolfenstein (Apple ][) Sample Player
 
-Original extract from Apple][ by Michael "Code Poet" Pohoreski
+Original extract from Apple ][ by Michael "Code Poet" Pohoreski
 (@Michaelangel007): https://github.com/Michaelangel007/apple2_castle_wolfenstein_sound_board
 
 Acorn Electron port by Negative Charge
