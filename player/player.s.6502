@@ -1,0 +1,44 @@
+.play
+        ldy 	#$00
+.next_note
+        lda 	(sample_addr_low),Y
+        pha
+        sta 	temp
+.delay_note
+        ldy 	#$04
+        beq 	done_delay
+.delay
+        dey
+        bne 	delay
+.done_delay
+        dec 	temp
+        bne 	delay_note
+        pla
+        cmp 	#$fe
+        beq 	skip_delay						; 3 (2 if not taken)
+        lda     #(SPEAKER_ON EOR SPEAKER_OFF)   ; 2
+    	eor     toggle                          ; 3
+    	sta     toggle                          ; 3
+	    sta     SHEILA_MISC_CONTROL             ; 4
+.skip_delay
+        inc 	sample_addr_low
+        bne 	same_page
+        inc		sample_addr_high
+.same_page
+        lda 	(sample_addr_low),Y
+		cmp		#$ff
+		bne		continue
+		lda		sample_addr_low
+		adc 	#$24
+		sta		sample_addr_low
+
+.continue
+		lda     #HI(sample_end)
+        cmp     sample_addr_high
+        bne     next_note
+
+        lda     #LO(sample_end)
+        cmp     sample_addr_low
+        bcs     next_note
+
+        rts

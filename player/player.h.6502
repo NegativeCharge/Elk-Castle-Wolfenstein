@@ -1,0 +1,5 @@
+.sample_addr_low    SKIP 1
+.sample_addr_high   SKIP 1
+
+.toggle             SKIP 1
+.temp               SKIP 1
